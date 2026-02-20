@@ -7,7 +7,7 @@ A fun little Linux terminal program that displays your name in a stylish, big, a
 To install this program from GitHub, simply run the following commands in your terminal:
 
 ```bash
-git clone https://github.com/yourusername/mynameis.git
+git clone https://github.com/freethinkr/mynameis.git
 cd mynameis
 chmod +x install.sh mynameis
 ./install.sh
@@ -30,5 +30,8 @@ Or pass your specific name/alias as an argument:
 mynameis "Super Coder"
 ```
 
-## How it works
-This script leverages `figlet` for generating ASCII art text, and `lolcat` to splash it with beautiful rainbow gradient colors in your terminal.
+To create a "filled" text style instead of only an outline, you can pass the `-f` flag before the name:
+
+```bash
+mynameis -f "Super Coder"
+```

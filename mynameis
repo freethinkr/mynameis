@@ -1,5 +1,11 @@
 #!/bin/bash
 
+FILLED=0
+if [[ "$1" == "-f" ]]; then
+    FILLED=1
+    shift
+fi
+
 # Default to the current logged-in user if no name is provided
 NAME="${@:-$USER}"
 
@@ -7,13 +13,19 @@ NAME="${@:-$USER}"
 show_magic() {
     # Check if figlet is installed
     if command -v figlet &> /dev/null; then
+        FIGLET_CMD="figlet"
+        if [ "$FILLED" -eq 1 ]; then
+            # Using 'banner' font for a filled look, you can also use 'block' if preferred
+            FIGLET_CMD="figlet -f banner"
+        fi
+        
         # Check if lolcat is installed for rainbow colors
         if command -v lolcat &> /dev/null; then
-            figlet "$NAME" | lolcat
+            $FIGLET_CMD "$NAME" | lolcat
         else
             # Fallback to bold cyan color
             echo -e "\e[1;36m"
-            figlet "$NAME"
+            $FIGLET_CMD "$NAME"
             echo -e "\e[0m"
         fi
     else
