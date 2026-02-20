@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Default to the current logged-in user if no name is provided
+NAME="${@:-$USER}"
+
+# A function to show colors and bold text
+show_magic() {
+    # Check if figlet is installed
+    if command -v figlet &> /dev/null; then
+        # Check if lolcat is installed for rainbow colors
+        if command -v lolcat &> /dev/null; then
+            figlet "$NAME" | lolcat
+        else
+            # Fallback to bold cyan color
+            echo -e "\e[1;36m"
+            figlet "$NAME"
+            echo -e "\e[0m"
+        fi
+    else
+        # Fallback if figlet is not installed: Use ANSI escape codes for bold and big looking text (art is hard without tools, so we just add style)
+        echo -e "\e[1;32m"
+        echo "========================================"
+        echo "                                        "
+        echo -e "       \e[1;36m$NAME\e[1;32m      "
+        echo "                                        "
+        echo "========================================"
+        echo -e "\e[0m"
+        echo "💡 Tip: Install 'figlet' and 'lolcat' for the ultimate magic!"
+        echo "   sudo apt install figlet lolcat"
+    fi
+}
+
+show_magic
