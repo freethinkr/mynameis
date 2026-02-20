@@ -7,7 +7,7 @@ A fun little Linux terminal program that displays your name in a stylish, big, a
 To install this program from GitHub, simply run the following commands in your terminal:
 
 ```bash
-git clone https://github.com/yourusername/mynameis.git
+git clone https://github.com/freethinkr/mynameis.git
 cd mynameis
 chmod +x install.sh mynameis
 ./install.sh
